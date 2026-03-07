@@ -33,6 +33,10 @@ ffbuild_dockerbuild() {
         return -1
     fi
 
+    cd libcharset
+    autoreconf -ivf
+    cd ..
+
     ./configure "${myconf[@]}"
     make -j$(nproc)
     make install
