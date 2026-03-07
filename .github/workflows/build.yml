@@ -1,4 +1,4 @@
-name: Build WIN64 FFmpeg
+name: Build Win64 FFmpeg
 
 on:
   workflow_dispatch:
