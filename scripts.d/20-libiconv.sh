@@ -21,7 +21,6 @@ ffbuild_dockerbuild() {
         --disable-shared
         --enable-static
         --with-pic
-        --disable-relocatable
     )
 
     if [[ $TARGET == win* || $TARGET == linux* ]]; then
