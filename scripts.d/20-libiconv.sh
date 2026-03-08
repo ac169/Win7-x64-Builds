@@ -9,7 +9,8 @@ ffbuild_enabled() {
 
 ffbuild_dockerdl() {
     echo "retry-tool sh -c \"rm -rf iconv && git clone '$SCRIPT_REPO' iconv\" && git -C iconv checkout \"$SCRIPT_COMMIT\""
-    echo "cd iconv && git submodule add -b stable-202201 git://git.savannah.gnu.org/gnulib.git gnulib && retry-tool ./autopull.sh --one-time"
+    # echo "cd iconv && git submodule add -b stable-202201 git://git.savannah.gnu.org/gnulib.git gnulib && retry-tool ./autopull.sh --one-time"
+    echo "cd iconv && git submodule add -b stable-202201 git://git.savannah.gnu.org/gnulib.git gnulib"
 }
 
 ffbuild_dockerbuild() {
