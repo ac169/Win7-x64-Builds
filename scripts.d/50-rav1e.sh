@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/xiph/rav1e.git"
-SCRIPT_COMMIT="7ab0de1fe907b16e3ce6c7ff0e15d27f71e5d5b4"
+SCRIPT_COMMIT="7c9db10494c2fffa98a572027d756e55bf754036"
 
 ffbuild_enabled() {
     [[ $TARGET == win32 ]] && return -1
@@ -22,7 +22,7 @@ ffbuild_dockerbuild() {
     unset PKG_CONFIG_LIBDIR
 
     # The pinned version is broken, and upstream does not react
-    cargo update cc
+    cargo update -p cc
 
     cargo cinstall -v "${myconf[@]}"
 
