@@ -14,6 +14,7 @@ ffbuild_dockerdl() {
 
 ffbuild_dockerbuild() {
     mkdir -p "$FFBUILD_PREFIX"/include
+    rm -fR "$FFBUILD_PREFIX"/include/AMF
     mv amf/public/include "$FFBUILD_PREFIX"/include/AMF
 }
 
