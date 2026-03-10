@@ -30,5 +30,5 @@ ffbuild_dockerbuild() {
     make -j$(nproc)
     make install
 
-    ln -s libudfread.pc "$FFBUILD_PREFIX"/lib/pkgconfig/udfread.pc
+    ln -sf libudfread.pc "$FFBUILD_PREFIX"/lib/pkgconfig/udfread.pc
 }
