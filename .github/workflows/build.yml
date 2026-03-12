@@ -41,9 +41,9 @@ jobs:
           pull: true
           push: true
           provenance: false
-          tags: ${{ steps.imagename.outputs.name }}:latest
-          cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}:cache
-          cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}:cache
+          tags: ${{ steps.imagename.outputs.name }}-1.26:latest
+          cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}-1.26:cache
+          cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}-1.26:cache
       - name: Get download cache key
         id: dl_cache
         run: |
@@ -110,9 +110,9 @@ jobs:
           pull: true
           push: true
           provenance: false
-          tags: ${{ steps.imagename.outputs.name }}:latest
-          cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}:cache
-          cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}:cache
+          tags: ${{ steps.imagename.outputs.name }}-1.26:latest
+          cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}-1.26:cache
+          cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}-1.26:cache
           build-args: |
             GH_REPO=ghcr.io/${{ steps.imagename.outputs.gh_repo }}
       - name: Cleanup
@@ -177,9 +177,9 @@ jobs:
           pull: true
           push: true
           provenance: false
-          tags: ${{ steps.imagename.outputs.name }}:latest
-          cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}:cache
-          cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}:cache
+          tags: ${{ steps.imagename.outputs.name }}-1.26:latest
+          cache-to: type=registry,mode=max,ref=${{ steps.imagename.outputs.name }}-1.26:cache
+          cache-from: type=registry,ref=${{ steps.imagename.outputs.name }}-1.26:cache
       - name: Cleanup
         continue-on-error: true
         uses: BtbN/delete-untagged-ghcr-action@main
