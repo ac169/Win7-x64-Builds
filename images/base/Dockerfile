@@ -19,7 +19,9 @@ RUN \
 
 ENV CARGO_HOME="/opt/cargo" RUSTUP_HOME="/opt/rustup" PATH="/opt/cargo/bin:${PATH}"
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --no-modify-path --default-toolchain 1.69.0 && \
-    cargo install cargo-c --version 0.10.5 --locked && rm -rf "${CARGO_HOME}"/registry "${CARGO_HOME}"/git
+    cargo install cargo-c --version 0.9.20 --locked && rm -rf "${CARGO_HOME}"/registry "${CARGO_HOME}"/git
+RUN rustc -V && \ cargo-cbuild -V
+ENV RUSTFLAGS="-C target-feature=+crt-static -C link-args=-Wl,--major-subsystem-version,6,--minor-subsystem-version,1"
 
 RUN --mount=src=.,dst=/input \
     for s in /input/*.sh; do cp $s /usr/bin/$(echo $s | sed -e 's|.*/||' -e 's/\.sh$//'); done
