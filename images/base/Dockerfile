@@ -18,8 +18,8 @@ RUN \
     git config --global advice.detachedHead false
 
 ENV CARGO_HOME="/opt/cargo" RUSTUP_HOME="/opt/rustup" PATH="/opt/cargo/bin:${PATH}"
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --no-modify-path --default-toolchain 1.69.0 && \
-    cargo install cargo-c --version 0.9.20 --locked && rm -rf "${CARGO_HOME}"/registry "${CARGO_HOME}"/git
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --no-modify-path --default-toolchain 1.75.0 && \
+    cargo install cargo-c && rm -rf "${CARGO_HOME}"/registry "${CARGO_HOME}"/git
 ENV RUSTFLAGS="-C target-feature=+crt-static -C link-args=-Wl,--major-subsystem-version,6,--minor-subsystem-version,1"
 
 RUN --mount=src=.,dst=/input \
