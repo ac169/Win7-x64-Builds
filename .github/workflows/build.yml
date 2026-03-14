@@ -253,7 +253,7 @@ jobs:
           RELDATE="$(date +'%Y-%m-%d %H:%M')"
           NAME="Build $RELDATE"
           TAGNAME="build-$(date +'%Y-%m-%d-%H-%M')"
-          gh release create "$TAGNAME" --target "${GITHUB_REF_NAME,,}" --title "$NAME" artifacts/*.{zip,tar.xz}
+          gh release create "$TAGNAME" --target "${GITHUB_REF_NAME,,}" --title "$NAME" artifacts/ffmpeg-*.{zip}
           echo "tag_name=${TAGNAME}" >> $GITHUB_OUTPUT
           echo "rel_date=${RELDATE}" >> $GITHUB_OUTPUT
         env:
@@ -269,13 +269,5 @@ jobs:
           gh release delete --cleanup-tag --yes "$TAGNAME" || true
           sleep 15
           gh release create "$TAGNAME" --target "${GITHUB_REF_NAME,,}" --title "$NAME" latest_artifacts/*
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-      - name: Update Wiki
-        run: ./util/update_wiki.sh artifacts ${{ steps.create_release.outputs.tag_name }}
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-      - name: Prune old releases
-        run: ./util/prunetags.sh
         env:
           GITHUB_TOKEN: ${{ github.token }}
