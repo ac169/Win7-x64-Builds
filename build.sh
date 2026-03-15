@@ -38,12 +38,14 @@ cat <<EOF >"$BUILD_SCRIPT"
     cd ffmpeg
     
     [ -n "$GIT_COMMIT" ] && git reset --hard '$GIT_COMMIT'
-    echo "$(cat RELEASE)-legacy" > VERSION
 
     ./configure --pkg-config-flags="--static" \$FFBUILD_TARGET_FLAGS \$FF_CONFIGURE \
         --extra-cflags="\$FF_CFLAGS" --extra-cxxflags="\$FF_CXXFLAGS" --extra-libs="\$FF_LIBS" \
         --extra-ldflags="\$FF_LDFLAGS" --extra-ldexeflags="\$FF_LDEXEFLAGS" \
         --cc="\$CC" --cxx="\$CXX" --ar="\$AR" --ranlib="\$RANLIB" --nm="\$NM"
+
+    \cp -f RELEASE VERSION
+    sed -i '/libavutil\/ffversion\.h/ s/\$(EXTRA_VERSION)/&-legacy/' Makefile
 
     make -j\$(nproc) V=1
     make install install-doc prefix=/ffbuild/prefix
