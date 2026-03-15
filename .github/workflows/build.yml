@@ -251,7 +251,7 @@ jobs:
           set -xe
           shopt -s nullglob
           RELDATE="$(date +'%Y-%m-%d %H:%M')"
-          NAME="${GITHUB_REF_NAME,,} Build $RELDATE"
+          NAME="${GITHUB_REF_NAME,,}_build_$(date +'%Y-%m-%d')"
           TAGNAME="commit:${{ github.sha }}"
           gh release create "$TAGNAME" --target "${GITHUB_REF_NAME,,}" --title "$NAME" artifacts/*.{zip,tar.xz}
           echo "tag_name=${TAGNAME}" >> $GITHUB_OUTPUT
