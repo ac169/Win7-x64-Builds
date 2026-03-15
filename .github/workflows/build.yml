@@ -266,7 +266,7 @@ jobs:
           set -xe
           shopt -s nullglob
           RELDATE="$(date +'%Y-%m-%d %H:%M')"
-          NAME="${GITHUB_REF_NAME,,} Build $RELDATE"
+          NAME="${GITHUB_REF_NAME,,}_build_$(date +'%Y-%m-%d')"
           TAGNAME="commit:${{ github.sha }}"
           (cd artifacts && sha256sum *.{zip,tar.xz} > checksums.sha256)
           gh release create "$TAGNAME" --target "master" --title "$NAME" artifacts/*.{zip,tar.xz} artifacts/checksums.*
