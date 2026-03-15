@@ -43,8 +43,6 @@ cat <<EOF >"$BUILD_SCRIPT"
         --extra-ldflags="\$FF_LDFLAGS" --extra-ldexeflags="\$FF_LDEXEFLAGS" \
         --cc="\$CC" --cxx="\$CXX" --ar="\$AR" --ranlib="\$RANLIB" --nm="\$NM"
 
-    [ -f libavutil/ffversion.h ] && sed -i 's/#define FFMPEG_VERSION "n\(.*\)"/#define FFMPEG_VERSION "\1 Compatible: Windows 7"/' libavutil/ffversion.h
-
     make -j\$(nproc) V=1
     make install install-doc prefix=/ffbuild/prefix
 EOF
