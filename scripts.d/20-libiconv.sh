@@ -3,8 +3,8 @@
 SCRIPT_REPO="https://git.savannah.gnu.org/git/libiconv.git"
 SCRIPT_COMMIT="918904edaf378253f262ce19da02ec69cec94a4e"
 
-# SCRIPT_REPO2="https://git.savannah.gnu.org/git/gnulib.git"
-# SCRIPT_COMMIT2="b88f01f04b38b156383ab269a58e5af58ec4cd0e"
+SCRIPT_REPO2="https://git.savannah.gnu.org/git/gnulib.git"
+SCRIPT_COMMIT2="b88f01f04b38b156383ab269a58e5af58ec4cd0e"
 
 ffbuild_enabled() {
     return 0
@@ -12,8 +12,7 @@ ffbuild_enabled() {
 
 ffbuild_dockerdl() {
     echo "retry-tool sh -c \"rm -rf iconv && git clone '$SCRIPT_REPO' iconv\" && git -C iconv checkout \"$SCRIPT_COMMIT\""
-    # echo "cd iconv && retry-tool sh -c \"rm -rf gnulib && git clone '$SCRIPT_REPO2' gnulib\" && git -C gnulib checkout \"$SCRIPT_COMMIT2\" && rm -rf gnulib/.git"
-    echo "cd iconv && git submodule add -b stable-202201 git://git.savannah.gnu.org/gnulib.git gnulib"
+    echo "cd iconv && retry-tool sh -c \"rm -rf gnulib && git clone '$SCRIPT_REPO2' gnulib\" && git -C gnulib checkout \"$SCRIPT_COMMIT2\" && rm -rf gnulib/.git"
 }
 
 ffbuild_dockerbuild() {
