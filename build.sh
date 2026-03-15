@@ -38,7 +38,7 @@ cat <<EOF >"$BUILD_SCRIPT"
     cd ffmpeg
     
     [ -n "$GIT_COMMIT" ] && git reset --hard '$GIT_COMMIT'
-    echo "$(cat RELEASE) legacy" > VERSION
+    echo "$(cat RELEASE)-legacy" > VERSION
 
     ./configure --pkg-config-flags="--static" \$FFBUILD_TARGET_FLAGS \$FF_CONFIGURE \
         --extra-cflags="\$FF_CFLAGS" --extra-cxxflags="\$FF_CXXFLAGS" --extra-libs="\$FF_LIBS" \
