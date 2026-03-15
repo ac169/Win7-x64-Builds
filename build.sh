@@ -45,7 +45,8 @@ cat <<EOF >"$BUILD_SCRIPT"
         --cc="\$CC" --cxx="\$CXX" --ar="\$AR" --ranlib="\$RANLIB" --nm="\$NM"
 
     \cp -f RELEASE VERSION
-    sed -i '/libavutil\/ffversion\.h/ s/\$(EXTRA_VERSION)/&-legacy/' Makefile
+    # sed -i '/libavutil\/ffversion\.h/ s/\$(EXTRA_VERSION)/&-legacy/' Makefile
+    sed '/test -n "\$3" && version=\$version-\$3/ i\version=\$version-legacy' ffbuild/version.sh
 
     make -j\$(nproc) V=1
     make install install-doc prefix=/ffbuild/prefix
