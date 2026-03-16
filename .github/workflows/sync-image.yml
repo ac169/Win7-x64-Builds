@@ -1,0 +1,33 @@
+name: Sync Images to Docker Hub
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync-images:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image_name: ["ffmpeg-builds-legacy/n7.1/win64-nonfree-shared-7.1", "ffmpeg-builds-legacy/n8.0/win64-nonfree-shared-8.0"] 
+    
+    steps:
+      - name: Sync Multi-Platform Images
+        run: |
+          SOURCE_NAME="ghcr.io/${{ github.repository_owner }}/${{ matrix.image_name }}"
+          TARGET_NAME="docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image_name }}"
+        
+          TAGS=("${{ github.event.inputs.tag_name }}")
+          if [ "${{ github.event.inputs.tag_name }}" != "latest" ]; then
+            TAGS+=("latest")
+          fi
+
+          for TAG in "${TAGS[@]}"; do
+            echo "🚀 Syncing $SOURCE_NAME:$TAG to $TARGET_NAME:$TAG ..."
+            
+            skopeo copy \
+              --all \
+              --src-creds "${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}" \
+              --dest-creds "${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}" \
+              docker://$SOURCE_NAME:$TAG \
+              docker://$TARGET_NAME:$TAG
+          done
