@@ -22,7 +22,7 @@ ffbuild_dockerbuild() {
     unset PKG_CONFIG_LIBDIR
 
     # The pinned version is broken, and upstream does not react
-    cargo update cc
+    # cargo update cc
 
     export "AR_${FFBUILD_RUST_TARGET//-/_}"="${AR}"
     export "RANLIB_${FFBUILD_RUST_TARGET//-/_}"="${RANLIB}"
