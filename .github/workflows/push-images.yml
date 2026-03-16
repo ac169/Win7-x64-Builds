@@ -7,7 +7,6 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      # 登录 GHCR
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
@@ -15,15 +14,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 登录 Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # 拉取、打标、推送
-      - name: Pull and Push
+      - name: Push 7.1
+        run: |
+          docker pull ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n7.1/win64-nonfree-shared-7.1:latest
+          docker tag ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n7.1/win64-nonfree-shared-7.1:latest ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-7.1:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-7.1:latest
+
+      - name: Push 8.0
         run: |
           docker pull ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n8.0/win64-nonfree-shared-8.0:latest
           docker tag ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n8.0/win64-nonfree-shared-8.0:latest ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-8.0:latest
