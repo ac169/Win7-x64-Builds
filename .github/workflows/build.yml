@@ -269,7 +269,7 @@ jobs:
           NAME="${GITHUB_REF_NAME,,} build $(date +'%Y-%m-%d')"
           TAGNAME="${GITHUB_SHA::7}"
           (cd artifacts && sha256sum *.{zip,tar.xz} > checksums.sha256)
-          gh release create "$TAGNAME" --target "master" --title "$NAME" artifacts/*.{zip,tar.xz} artifacts/checksums.*
+          gh release create "$TAGNAME" --target "${GITHUB_REF_NAME,,}" --title "$NAME" artifacts/*.{zip,tar.xz} artifacts/checksums.*
           echo "tag_name=${TAGNAME}" >> $GITHUB_OUTPUT
           echo "rel_date=${RELDATE}" >> $GITHUB_OUTPUT
         env:
