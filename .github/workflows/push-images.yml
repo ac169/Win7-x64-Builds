@@ -23,11 +23,11 @@ jobs:
       - name: Push 7.1
         run: |
           docker pull ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n7.1/win64-nonfree-shared-7.1:latest
-          docker tag ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n7.1/win64-nonfree-shared-7.1:latest ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-7.1:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-7.1:latest
+          docker tag ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n7.1/win64-nonfree-shared-7.1:latest ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-7.1-builds-legacy:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-7.1-builds-legacy:latest
 
       - name: Push 8.0
         run: |
           docker pull ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n8.0/win64-nonfree-shared-8.0:latest
-          docker tag ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n8.0/win64-nonfree-shared-8.0:latest ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-8.0:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-8.0:latest
+          docker tag ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n8.0/win64-nonfree-shared-8.0:latest ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-8.0-builds-legacy:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-8.0-builds-legacy:latest
