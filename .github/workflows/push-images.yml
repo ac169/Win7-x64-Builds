@@ -25,6 +25,6 @@ jobs:
       # 拉取、打标、推送
       - name: Pull and Push
         run: |
-          docker pull ghcr.io/${{ github.repository_owner }}/my-image:latest
-          docker tag ghcr.io/${{ github.repository_owner }}/my-image:latest ${{ secrets.DOCKERHUB_USERNAME }}/my-image:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-image:latest
+          docker pull ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n8.0/win64-nonfree-shared-8.0:latest
+          docker tag ghcr.io/${{ github.repository_owner }}/ffmpeg-builds-legacy/n8.0/win64-nonfree-shared-8.0:latest ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-8.0:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ffmpeg-win64-nonfree-shared-8.0:latest
