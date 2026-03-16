@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/xiph/rav1e.git"
-SCRIPT_COMMIT="a2f01b3e233f531c28a20b4c29fb5c9e5d29fa6d"
+SCRIPT_COMMIT="054823271c4b4923a87f1e02f7f0fd282f0b29e1"
 
 ffbuild_enabled() {
     [[ $TARGET == win32 ]] && return -1
@@ -10,7 +10,7 @@ ffbuild_enabled() {
 
 ffbuild_dockerbuild() {
     local myconf=(
-        --prefix="${FFBUILD_PREFIX}"
+        --prefix="$FFBUILD_PREFIX"
         --target="${FFBUILD_RUST_TARGET}"
         --library-type=staticlib
         --crt-static
@@ -20,21 +20,6 @@ ffbuild_dockerbuild() {
     # Pulls in target-libs for host tool builds otherwise.
     # Luckily no target libraries are needed.
     unset PKG_CONFIG_LIBDIR
-
-    # The pinned version is broken, and upstream does not react
-    # cargo update cc
-
-    export "AR_${FFBUILD_RUST_TARGET//-/_}"="${AR}"
-    export "RANLIB_${FFBUILD_RUST_TARGET//-/_}"="${RANLIB}"
-    export "NM_${FFBUILD_RUST_TARGET//-/_}"="${NM}"
-    export "LD_${FFBUILD_RUST_TARGET//-/_}"="${LD}"
-    export "CC_${FFBUILD_RUST_TARGET//-/_}"="${CC}"
-    export "CXX_${FFBUILD_RUST_TARGET//-/_}"="${CXX}"
-    export "LD_${FFBUILD_RUST_TARGET//-/_}"="${LD}"
-    export "CFLAGS_${FFBUILD_RUST_TARGET//-/_}"="${CFLAGS}"
-    export "CXXFLAGS_${FFBUILD_RUST_TARGET//-/_}"="${CXXFLAGS}"
-    export "LDFLAGS_${FFBUILD_RUST_TARGET//-/_}"="${LDFLAGS}"
-    unset AR RANLIB NM CC CXX LD CFLAGS CXXFLAGS LDFLAGS
 
     cargo cinstall -v "${myconf[@]}"
 
