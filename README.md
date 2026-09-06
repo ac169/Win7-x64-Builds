@@ -1,3 +1,14 @@
+# Credits
+
+This repository is customized and maintained based on [BtbN/FFmpeg-Builds](https://github.com). All original compilation scripts and patches belong to the upstream authors.
+
+# Why this customization?
+Although the upstream project claims to target Windows 7, its recent updates practically require Windows 10 or newer, making it no longer work on Windows 7. 
+
+The primary goal of this repository is to **restore and maintain full compatibility for Windows 7**, ensuring users can still build and run static FFmpeg binaries on Windows 7 environments.
+
+Additionally, the CI/CD automation workflow has been adjusted for custom artifact management.
+
 # FFmpeg Static Auto-Builds
 
 Static Windows (x86_64) and Linux (x86_64) Builds of ffmpeg master and latest release branch.
